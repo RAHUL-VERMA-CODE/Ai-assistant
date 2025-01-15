@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 62.5%;
+}
+body{
+    font-family: "Roboto", serif;
+     /* background-color: rgba(40, 41, 41, 0.596); */
+     background: rgb(70, 68, 68);
+}
+
+.main-container{
+    width: 60vw;
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50% ,-50%);
+  background-color: #ccc5c580;
+   /* background-image: linear-gradient(-20deg, #616161 0%, #9bc5c3 100%); */
+   
+  box-shadow: 13px 13px 10px #ffffff83,
+  inset 13px 13px 20px #ffffff54;
+  border-radius: 30px;
+}
+.container h1{
+    font-size: 1.8rem;
+    color: rgba(0, 0, 0, 0.753);
+    padding:1rem 1.8rem;
+    /* background: linear-gradient(to right ,red ,pink,blue,yellow,green );
+    background-clip: text;
+    -webkit-text-fill-color:transparent ; */
+}
+.container h1 span{
+    font-size: 2.8rem;
+    color: black;
+}
+
+/* =================talk to nexa btn css===================== */
+
+.inner-container{
+    display: flex;
+    margin-top: 4rem;
+    justify-content: space-around;
+}
+.btn{
+ padding: 1rem 2rem;
+ border-radius:20px ;
+  /* display: block; */
+  margin-top: 3rem;
+  background-color: #c1c1c1;
+  outline: 0;
+  border: 0;
+  box-shadow:8px 8px 15px rgba(0, 0, 0, 0.452)
+  ,inset -8px -8px 15px #ffffff75;
+  color: #000000b2;
+  font-weight: 580;
+  cursor: pointer;
+  position: relative;
+ 
+}
+.btn:hover{
+    background: rgb(43, 42, 42);
+    box-shadow:5px 5px 10px #ffffffa1
+    ,inset -8px -8px 15px #ffffff75;
+    color: rgba(255, 255, 255, 0.993);
+}
+.stop-btn{
+    display:none ;
+}
+/* ==================responding animation=========================== */
+.outer-div{
+    /* border: 1px solid black; */
+    height: 12rem;
+    width:12rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #e7e5e5;
+    box-shadow: 13px 13px 20px #0000005b,
+    inset 13px 13px 20px #ffffff96;
+    position: relative;
+    /* margin:2rem auto; */
+    margin-left: 4rem;
+}
+.inner-div{
+    border:3px solid rgb(0, 174, 255);
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    background: #fdf8f87e;
+
+}
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+.inner-div::after,.inner-div::before{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width:100%;
+    background-image:conic-gradient(from var(--angle),#ff4545,#00ff90,#006aff,#ff0095,#ff4545);
+    /* this give only one color rotate  [from 200deg,]*/
+    /* background-image:conic-gradient(from var(--angle),transparent 50%,blue); */
+    animation: 1.6s spin linear infinite;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    z-index: -1;
+    /* here padding give thickness of border */
+    padding: 3.2px;
+    border-radius: 50%;
+    display: none;
+    
+}
+
+.inner-div::before{
+    filter: blur(2rem);
+    opacity: 0.6;
+}
+@keyframes spin{
+    from{
+     --angle: 0deg;
+    }
+    to{
+        --angle:360deg;
+    }
+}
+ 
+/* ==========response css===================== */
+.ai-response{
+    border:2px solid rgb(80, 79, 79);
+    min-height: 10rem;
+    width:90%;
+    margin: auto;
+    display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  /* background: rgba(61, 60, 60, 0.253); */
+  background: rgba(61, 60, 60, 0.801);
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  color:white;
+  /* color: rgba(24, 23, 23, 0.918); */
+}
+.input{
+    height:3rem;
+    width:85%;
+    border-radius: 10px;
+    outline: 0;
+    border: 0;
+    margin-left: 0.5rem;
+    margin-bottom: 0.7rem;
+    padding-left: 0.8rem;
+    flex-grow: 1;
+   
+}
+.Message{
+    display: flex;
+    margin-bottom:0.5rem ;
+}
+.Message button{
+    height: 3rem;
+    width:3rem;
+    border-radius: 50%;
+    outline: 0;
+    border: 0;
+    margin: 0 0.7rem;
+    cursor: pointer;
+   
+}
+.Message button i{
+    background-color: white;
+    color: #000000e3;
+}
+.chat-container{
+    max-height: 20rem;
+    width:100%;
+    overflow-y: auto;
+    flex-grow:10;
+    font-size: 1.7rem;
+    padding:1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+}
+.ai-chat-box .img{
+   width:4rem;
+   border-radius: 50%;
+}
+.user-chat-box{
+  width:70%;
+  padding:1rem;
+  margin-left: 5rem;
+  border-radius: 20px 20px 0px 20px;
+  background:rgba(39, 39, 39, 0.253) ;
+  
+}
+.ai-chat-box{
+    width:85%;
+  padding:1rem;
+  display: flex;
+  background:rgba(39, 39, 39, 0.404) ; 
+  border-radius: 25px 25px 25px 0px;
+}
+.ai-chat-box .text{
+    padding-left: 1.4rem;
+}
+.ai-img{
+    display: flex;
+}
+.loading{
+    height: 8rem;
+    flex-grow: 2;
+}
+
+/* ==============media query================ */
+
+@media (max-width:780px){
+    .main-container{
+        width:90%;
+    }
+    
+}
+@media (max-width:500px) {
+   .inner-container{
+        flex-direction: column;
+        align-items: center;
+    }
+    .main-div{
+        margin-right: 4rem;
+    }
+    .ai-chat-box{
+        width:85%;
+    }
+    .main-container{
+    box-shadow: 13px 13px 5px #ffffff54;
+    }
+}
+/* ======================for lanscape mode =============================== */
+/* @media (orientation: landscape) and (max-width: 500px) {
+    .main-container {
+        height: 60%;
+    }
+} */
