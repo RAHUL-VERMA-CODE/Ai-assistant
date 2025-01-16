@@ -17,7 +17,7 @@ body{
     width: 60vw;
   position: absolute;
   left: 50%;
-  top: 45%;
+  top: 47%;
   transform: translate(-50% ,-50%);
   background-color: #ccc5c580;
    /* background-image: linear-gradient(-20deg, #616161 0%, #9bc5c3 100%); */
@@ -242,15 +242,30 @@ body{
         margin-right: 4rem;
     }
     .ai-chat-box{
-        width:85%;
+        width:90%;
     }
     .main-container{
-    box-shadow: 13px 13px 5px #ffffff54;
-    }
+    box-shadow: 13px 13px 5px #ffffff00;
+    width:95vw;
+    height: 70vh;
+}
+.btn{
+    margin-top: 3.5rem;
+}
+.ai-response{
+    width:95%;
+}
+.container h1{
+    font-size: 2rem;
+}
+.container h1 span{
+    font-size: 3.5rem;
+}
 }
 /* ======================for lanscape mode =============================== */
-/* @media (orientation: landscape) and (max-width: 500px) {
+@media (orientation: landscape) and (max-width: 500px) {
     .main-container {
-        height: 60%;
+        width:100vw;
+        
     }
-} */
+}

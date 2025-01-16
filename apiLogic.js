@@ -3,6 +3,7 @@ const URL="https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-fl
 async function getApiResponce(AiChatBox){
    let textElement= AiChatBox.querySelector(".text")
    try{
+    if(!check){
       const response=await fetch(URL,{
         method:"post",
         Headers:{'Content-Type': 'application/json'},
@@ -16,6 +17,7 @@ async function getApiResponce(AiChatBox){
       const data= await response.json();
      const  apiResponce=data?.candidates[0].content.parts[0].text;
      textElement.innerText=apiResponce;
+    }
    }
    catch(error){
        console.log(error);
@@ -24,7 +26,6 @@ async function getApiResponce(AiChatBox){
     AiChatBox.querySelector(".loading").style.display="none";
    }
 }
-
 // text response js
 const prompt=document.querySelector(".input");
 const sendBtn=document.querySelector(".sendBtn");
@@ -60,8 +61,7 @@ function showLoading(){
   const AiReponse=getApiResponce(AiChatBox);    
 //   AiChatBox.querySelector(".text").innerText=AiReponse;                   
 }
-
-sendBtn.addEventListener("click",()=>{
+ function handleSendMessage(){
   userMessage=prompt.value;
   if(!userMessage) return;
   let html=`<p class="text"> </p>`;
@@ -70,5 +70,15 @@ sendBtn.addEventListener("click",()=>{
   userChatBox.querySelector(".text").innerText=userMessage;  
   chatContainer.appendChild(userChatBox); 
   prompt.value="";
-  setTimeout(showLoading,500)   
+  setTimeout(showLoading,400) 
+}
+sendBtn.addEventListener("click",()=>{
+  handleSendMessage();
 })
+
+prompt.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+      event.preventDefault(); // Prevent default Enter behavior (like form submission)
+      handleSendMessage();
+  }
+});

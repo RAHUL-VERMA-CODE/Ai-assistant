@@ -1,4 +1,7 @@
 let button=document.querySelector(".btn");
+let check=false;
+// Declare transcript as a global variable
+let transcript="";
 // creating speak function to speak
 function speak(text){
     // new SpeechSynthesisUtterance() is object 
@@ -29,6 +32,25 @@ window.addEventListener("load",()=>{
     // wishMe();
 })
 
+async function takeTranscript(transcript){
+  if(check===true){
+            const response=await fetch(URL,{
+              method:"post",
+              Headers:{'Content-Type': 'application/json'},
+              body:JSON.stringify({
+                  "contents": [
+                      {"role":"user",
+                       "parts":[{"text": transcript}]
+          }]
+              })
+            });
+            const data= await response.json();
+           const  apiResponce=data?.candidates[0].content.parts[0].text;
+           speak(apiResponce);
+           }
+  }
+
+
 // SpeechRecognition is a general concept for APIs or libraries used to convert spoken words into text. It could refer to:
 // -->  Web-based APIs like WebkitSpeechRecognition.
 // --> It allows websites to listen to your voice using a microphone and convert it into text in real-time.
@@ -39,35 +61,17 @@ if(speechRecognition){
 const recognition= new speechRecognition();
 recognition.onresult=(event)=>{
   //  console.log(event);
-   const transcript=event.results[0][0].transcript;
+    transcript=event.results[0][0].transcript;
    console.log("You said:", transcript);
    takeCommand(transcript.toLowerCase());
-
-  //  ==================================
-  //  async function sound(){
-  //   const response=await fetch(URL,{
-  //     method:"post",
-  //     Headers:{'Content-Type': 'application/json'},
-  //     body:JSON.stringify({
-  //         "contents": [
-  //             {"role":"user",
-  //              "parts":[{"text": transcript}]
-  // }]
-  //     })
-  //   });
-  //   const data= await response.json();
-  //   const  apiResponce=data?.candidates[0].content.parts[0].text;
-  //   console.log(apiResponce);
-  //   speak(apiResponce);
-  //  }
-//  ==============================================
-   
   }
  // Handle errors
 recognition.onerror = (event) => {
     console.error("Error occurred:", event.error);
 };
- 
+   
+
+
 button.addEventListener("click",()=>{
   //Start recognition
     recognition.start(); 
@@ -83,7 +87,7 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
-  
+   check=true;
   })
   
   const stopBtn=document.querySelector(".stop-btn");
@@ -146,10 +150,6 @@ function takeCommand(message){
       speak("opening calculator...");
       window.open("calculator://");
     }
-    else if(message.includes("open camera")){
-      speak("opening camera...");
-      window.open("Camera://");
-    }
     else if(message.includes("open whatsapp")){
       speak("opening whatsapp...");
       window.open("whatsapp://");
@@ -171,12 +171,18 @@ function takeCommand(message){
     else if(message.includes("who is digant")){
       speak("डिगंत गांधी ji हैं,अरे वही, जो बिना Wi-Fi के पूरे देश को जोड़ते थे,चरखे से स्वदेशी फैशन चलाते थे,और अंग्रेजों से बोले भाई, अब निकल लो!");
     }
-   
-     
-    else{
-      speak(`this is what i found on internet regarding ${message}`);
+    else if(message.includes("who is amit")||message.includes("do you konw amit")){
+      speak("amit is brother of rahul verma");
+    }
+    else if(message.includes("open in google")||message.includes("search in google")||message.includes("find in google")){
+       speak(`this is what i found on internet regarding ${message}`);
       window.open(`https://www.google.com/search?q=${message}`);
     }
+    else{
+      takeTranscript(message);
+      
+    }
+  
  
 }
 
