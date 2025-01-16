@@ -29,7 +29,7 @@ function wishMe(){
 }
 // addEventlistener for wish on load the website
 window.addEventListener("load",()=>{
-    // wishMe();
+    wishMe();
 })
 
 async function takeTranscript(transcript){
