@@ -15,7 +15,9 @@ async function getApiResponce(AiChatBox){
         })
       });
       const data= await response.json();
-     const  apiResponce=data?.candidates[0].content.parts[0].text;
+     let apiResponce=data?.candidates[0].content.parts[0].text;
+    //  let cleanedData = apiResponce.replace(/\*+/g, "");
+    //  textElement.innerText=cleanedData;
      textElement.innerText=apiResponce;
     }
    }

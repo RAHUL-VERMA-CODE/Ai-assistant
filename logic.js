@@ -36,7 +36,7 @@ async function takeTranscript(transcript){
   if(check===true){
             const response=await fetch(URL,{
               method:"post",
-              Headers:{'Content-Type': 'application/json'},
+              headers:{'Content-Type': 'application/json'},
               body:JSON.stringify({
                   "contents": [
                       {"role":"user",
@@ -45,8 +45,9 @@ async function takeTranscript(transcript){
               })
             });
             const data= await response.json();
-           const  apiResponce=data?.candidates[0].content.parts[0].text;
-           speak(apiResponce);
+           let  apiResponce=data?.candidates[0].content.parts[0].text;
+           let cleanedData = apiResponce.replace(/\*+/g, "");
+           speak(cleanedData);
            }
   }
 
@@ -120,7 +121,7 @@ recognition.onend=()=>{
 
 // function for take coomand and response
 function takeCommand(message){
-    if(message.includes("hello nexa")||message.includes("hey nexa")){
+    if(message.includes("hello nexa")||message.includes("hey nexa")||message.includes("hello alexa")){
       speak("hello sir,what can i help you ?");
     }
     else if(message.includes("who are you")|| message.includes("tum kaun ho")){
