@@ -1,4 +1,8 @@
 let button=document.querySelector(".btn");
+const NexaBtn=document.querySelector(".nexaBtn");
+// Speech Synthesis Setup
+const synth = window.speechSynthesis;
+const utterance = new SpeechSynthesisUtterance();
 let check=false;
 // Declare transcript as a global variable
 let transcript="";
@@ -11,7 +15,11 @@ function speak(text){
     text_speak.volume=1;
     text_speak.lang="hi-GB";
     window.speechSynthesis.speak(text_speak);
-}
+  }
+  // onclick the nexa stop to speaking
+  NexaBtn.addEventListener("click",()=>{
+    synth.cancel();
+  })
 
 // speak("hello rahul how are you i hope you are good. i know you are working to improve me")
 function wishMe(){
@@ -30,6 +38,8 @@ function wishMe(){
 // addEventlistener for wish on load the website
 window.addEventListener("load",()=>{
     wishMe();
+    synth.cancel();
+    // recognition.stop();
 })
 
 async function takeTranscript(transcript){
@@ -70,7 +80,6 @@ recognition.onresult=(event)=>{
 recognition.onerror = (event) => {
     console.error("Error occurred:", event.error);
 };
-   
 
 
 button.addEventListener("click",()=>{
@@ -124,7 +133,7 @@ function takeCommand(message){
     if(message.includes("hello nexa")||message.includes("hey nexa")||message.includes("hello alexa")){
       speak("hello sir,what can i help you ?");
     }
-    else if(message.includes("who are you")|| message.includes("tum kaun ho")){
+    else if(message.includes("who are you")|| message.includes("tum kaun ho")||message.includes("hu r u")){
       speak("i am Nexa virtual assistant , created by Rahul verma");
     }
     else if(message.includes("open youtube")){

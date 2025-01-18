@@ -136,6 +136,9 @@ body{
         --angle:360deg;
     }
 }
+.nexaBtn{
+    cursor: pointer;
+}
  
 /* ==========response css===================== */
 .ai-response{
@@ -201,12 +204,16 @@ body{
 }
 .user-chat-box{
   width:70%;
+  /* justify-content: flex-end; */
   padding:1rem;
   margin-left: 5rem;
   border-radius: 20px 20px 0px 20px;
   background:rgba(39, 39, 39, 0.253) ;
   
 }
+/* .user-chat-box .text{
+    text-align: end;
+} */
 .ai-chat-box{
     width:85%;
   padding:1rem;
