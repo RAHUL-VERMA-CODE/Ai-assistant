@@ -216,11 +216,11 @@ body{
   justify-content: flex-end;
   
 }
-/* .user-chat-box p{
+.user-chat-box p{
     background:rgba(39, 39, 39, 0.253) ;
     border-radius: 20px 20px 0px 20px;
     padding: 0.5rem;
-} */
+}
 
 .ai-chat-box{
     width:85%;
